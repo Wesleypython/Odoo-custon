@@ -1,0 +1,64 @@
+<odoo>   #ferramentas
+    <data>
+        <record id="view_ferramenta_form" model="ir.ui.view">  #meu id e meu modelo de registro
+            <field name="name">ferramenta.form</field>
+            <field name="model">ferramenta</field>
+            <field name="arch" type="xml"> # meu arq xml que contém um formulário
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="id_job"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
+
+        <record id="view_ferramenta_tree" model="ir.ui.view">  #minha tree, de vizualização
+            <field name="name">ferramenta.tree</field>
+            <field name="model">ferramenta</field>
+            <field name="arch" type="xml">
+                <tree>
+                   <!--  Para exibir um campo Many2many como uma lista de seleção. -->
+                    <!-- <field name="ferramentas_id" widget="many2many_tags"/>-->
+                    <field name="id_job"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_ferramenta" model="ir.actions.act_window"> # minha ação na janela de vizualição
+            <field name="name">Ferramentas</field>
+            <field name="res_model">ferramenta</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+         <menuitem id="menu_view_ferramenta"
+                   parent="hr.menu_config_recruitment"
+                   name="Ferramenta"
+                   sequence="1"
+                   action="action_ferramenta"/> #Id do menuitem, e ID do pai dele, nome, sequencia e a ação a ser executada
+    </data>
+
+    <data>  #hr_job
+        <record id="model_job_inherit" model="ir.ui.view">
+            <field name="name">job_inherit</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group>
+                        <field name="ferramentas_id" widget="many2many"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>  # Entendendo a estrutura de vizualição: 1- o arquivo .py herda toda a estrutura do MODELO _inheritado e add as extensões
+    # 2- Entramos na estrutura de views e add uma extensão com o <xpath <group <field
+    # 3- A minha lógica na estrutura com o hr_job.xml e view_ferramentas.xml: A estrutura(modelo) hr esta herdando do pai o seu modelo,
+ # e acrecentando o ferramentas_id, que contém o Nova Ferramenta, por isso que ao editar o view_ferramentas.xml eu automaticamente
+ # modifico o exterior, o hr_job. Que herda o view_hr_job_form (base Cargo do hr), e add o ferramentas_id(que tem como finho/extensão
+ # o id_job).
+    # Dentro do groups eu também ponho o direcionamento de onde esta o group de permissões: hr.--  groups="hr.group_hr_user"
+</odoo>
+

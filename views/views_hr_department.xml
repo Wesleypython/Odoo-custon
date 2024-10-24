@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record id="model_inherit_form" model="ir.ui.view">
+            <field name="name">hr.department.form.inherit</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//sheet" position="inside">
+                    <group>
+                        <field name="assinatura"/>
+                        <field name="turno"/>
+                    </group>
+                </xpath>
+<!--                XPath: Em vez de tentar reescrever o elemento <form>-->
+<!--                , utilizei um xpath para inserir um novo <group> dentro do <sheet>-->
+<!--                . O XPath //sheet localiza o elemento <sheet> na visão pai e insere os campos dentro dele.-->
+            </field>
+        </record>
+
+
+    <!-- A INTEGRAÇÃO DA ASSINATURA NÃO É NECESSÁRIO FAZER UM MENUITEM, NEM UMA TREE, PORQUE JÁ ESTA INHERITANDO-->
+
+
+<!--         <record id="view_departamento_tree" model="ir.ui.view">-->
+<!--            <field name="name">Seu departamento</field>-->
+<!--            <field name="model">hr.department</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Tree">-->
+<!--                    <field name="assinatura"/>-->
+<!--                    <field name="turno"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <record id="action_departamento" model="ir.actions.act_window">-->
+<!--            <field name="name">Descrição</field>-->
+<!--            <field name="res_model">hr.department</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+<!--         <record id="menu_departamento" model="ir.ui.menu">-->
+<!--            <field name="name">Menu</field>-->
+<!--            <field name="action" ref="action_departamento"/>-->
+<!--&lt;!&ndash;            <field name="web_icon">repair_management,static/description/odoo_pessoa.png</field>&ndash;&gt;-->
+<!--        </record>-->
+    </data>
+</odoo>

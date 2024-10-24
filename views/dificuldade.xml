@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <record id="view_dificuldades_form" model="ir.ui.view">
+            <field name="name">Dificuldade.form</field>
+            <field name="model">dificuldade</field>
+            <field name="arch" type="xml">
+                <form>
+                 <sheet>
+                        <sheet>
+                        <group>
+                            <field name="nome"/>
+                            <field name="difficulty"/>
+                        </group>
+                    </sheet>
+                    <sheet>
+                        <group>
+                            <field name="time"/>
+                            <field name="week"/>
+                            <field name="forecast"/>
+                        </group>
+                    </sheet>
+                 </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_dificuldade_tree" model="ir.ui.view">
+            <field name="name">dificuldade.tree</field>
+            <field name="model">dificuldade</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--<field name="data"/>-->
+                    <field name="nome"/>
+                    <field name="difficulty"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_dificuldade" model="ir.actions.act_window">
+            <field name="name">Click</field>
+            <field name="res_model">dificuldade</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                id="menu_config_dificuldade"
+                name="Nível de dificuldade das tarefas"
+                parent="menu_config_servico"
+                groups="hr.group_hr_user"
+                sequence="2"
+                action="action_dificuldade"/>
+    </data>
+</odoo>
+        <!--Certifique-se de que os IDs dos registros
+        (view_dificuldade_form, view_dificuldade_tree, etc.) são únicos em todo o sistema para evitar conflitos.-->

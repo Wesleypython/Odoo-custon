@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ferramenta_access,ferramenta_access,model_ferramenta,base.group_user,1,1,1,1
+servico_access,servico_access,model_servico,base.group_user,1,1,1,1
+dificuldade_access,dificuldade_access,model_dificuldade,base.group_user,1,1,1,1
+
+

@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="view_tipo_de_dificuldade_form" model="ir.ui.view">
+            <field name="name">Location.form</field>
+            <field name="model">hr.work.location</field>
+            <field name="inherit_id" ref="hr.hr_work_location_form_view"/>
+              <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group>
+                        <field name="local">
+                            <tree>
+                                <field name="name"/>
+                                 <field name="job_id"/>
+                                 <field name="department_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

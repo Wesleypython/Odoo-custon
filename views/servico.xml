@@ -1,0 +1,86 @@
+<odoo>
+    <data>
+        <record id="view_servico_form" model="ir.ui.view">
+            <field name="name">servico.form</field>
+            <field name="model">servico</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <sheet>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="campo_managers" invisible="1"/>
+                                <field name="equipe">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="job_id"/>
+                                        <!--                                    <field name="parent_id"/>-->
+                                    </tree>
+                                </field>
+                                <field name="only_son" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="numero_da_ordem"/>
+                            </group>
+                        </sheet>
+                        <sheet>
+                            <group>
+                                <field name="data_de_emissao"/>
+                                <field name="difficulty_ids">
+                                    <tree>
+                                        <field name="nome"/>
+                                        <field name="difficulty"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group>
+                                <field name="equipamentos"/>
+                            </group>
+                        </sheet>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_servico_tree" model="ir.ui.view">
+            <field name="name">servico.tree</field>
+            <field name="model">servico</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="name"/>
+                    <field name="data_de_emissao"/>
+                    <field name="difficulty_ids">
+                        <tree>
+                            <field name="difficulty"/>
+                        </tree>
+                    </field>
+                    <field name="equipe" widget="many2many_tags"/>
+                    <!--coloquei o widget porque por padrão o odoo oculta na tree o que esta dentro do campo equipe por ser um
+                        um campo multiplo -->
+                </tree>
+            </field>
+        </record>
+        <record id="action_servico" model="ir.actions.act_window">
+            <field name="name">Click_na_ação</field>
+            <field name="res_model">servico</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                id="menu_config_servico"
+                name="Ordem de Servicos"
+                parent="hr.menu_hr_root"
+                groups="hr.group_hr_user"
+                sequence="1"/>
+        <!--     parent="hr.menu_human_resources_configuration"-->
+        <menuitem
+                id="menu_config_ordem_servico"
+                name="Ordem de Servico"
+                parent="menu_config_servico"
+                groups="hr.group_hr_user"
+                sequence="1"
+                action="action_servico"/>
+
+    </data>
+</odoo>
